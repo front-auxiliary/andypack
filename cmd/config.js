@@ -26,7 +26,7 @@ const config = {
   server: {
     contentBase: absolutepath("../src"),
     host: "k.aixuexi.com",
-    port: "80",
+    port: "8081",
     proxy: {
       "/diy": {
         target: "http://diy.aixuexi.com", // target host
