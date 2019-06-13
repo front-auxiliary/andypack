@@ -47,7 +47,6 @@ const getfile = dir => {
         code = UglifyJS.minify(code).code;
         code = code.replace('"use strict";','');
         for(let key in envPlugin){
-          // console.log(code,"----")
           code = code.replace(key,`'${envPlugin[key]}'`)
         }
       }
