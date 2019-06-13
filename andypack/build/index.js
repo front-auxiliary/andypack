@@ -10,6 +10,7 @@ let prodPath = '';
 let srcPath = '';
 let repalcePathKey = '/'
 let buildParams = {};
+let envPlugin = null;
 if(isWin){
   repalcePathKey = '\\'
 }
@@ -33,6 +34,7 @@ const getfile = dir => {
     if (dir) {
       var code = ready(dir);
       if (dir.search(/\.js$/) != -1) {
+      
         
         code = transform(code, {
           presets: ["@babel/env",["minify", {
@@ -44,6 +46,10 @@ const getfile = dir => {
         }).code;
         code = UglifyJS.minify(code).code;
         code = code.replace('"use strict";','');
+        for(let key in envPlugin){
+          // console.log(code,"----")
+          code = code.replace(key,`'${envPlugin[key]}'`)
+        }
       }
       let filepath = dir.replace(srcPath, prodPath);
      
@@ -63,7 +69,9 @@ const getfile = dir => {
 
 
 module.exports = (params)=>{
+
   prodPath = params.build.output.path;
+  envPlugin = params.envPlugin;
   srcPath = params.build.enter;
   buildParams = params.build;
   const jsonpath = path.join(__dirname, "../pack.json");

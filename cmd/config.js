@@ -1,6 +1,6 @@
 const pack = require("../andypack");
 const path = require("path");
-
+const env = process.env.NODE_ENV;
 const absolutepath = src => {
   return path.join(__dirname, src);
 };
@@ -11,7 +11,7 @@ const config = {
       mini: true,
       path: absolutepath("../prod")
     },
-    exclude:[/\.html$/]
+    // exclude:[/\.html$/]
   },
   watch: [absolutepath("../src/css")],
   loaders: [
@@ -26,7 +26,7 @@ const config = {
   server: {
     contentBase: absolutepath("../src"),
     host: "k.aixuexi.com",
-    port: "8081",
+    port: "80",
     proxy: {
       "/diy": {
         target: "http://diy.aixuexi.com", // target host
@@ -37,6 +37,9 @@ const config = {
         }
       }
     }
+  },
+  envPlugin:{
+    'process.env.NODE_ENV':env
   }
 };
 module.exports = config;

@@ -4,9 +4,9 @@
   "description": "[![devDependencies Status](https://david-dm.org/ckeditor/ckeditor-dev/dev-status.svg)](https://david-dm.org/ckeditor/ckeditor-dev?type=dev)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node cmd/dev",
-    "build": "node cmd/build"
+    "test": "cross-env NODE_ENV=test node cmd/build",
+    "build": "cross-env NODE_ENV=prod node cmd/build"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "babel-preset-minify": "^0.5.0",
     "babel-preset-stage-0": "^6.24.1",
     "chokidar": "^2.1.5",
+    "cross-env": "^5.2.0",
     "express": "^4.16.4",
     "fs-extra": "^7.0.1",
     "http-proxy-middleware": "^0.19.1",
@@ -32,8 +33,6 @@
     "uglify-js": "^3.5.4"
   },
   "dependencies": {
-    "open": "^6.3.0",
-    "single-line-log": "^1.1.2",
-    "socket.io": "^2.2.0"
+    "single-line-log": "^1.1.2"
   }
 }

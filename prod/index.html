@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/js/socket.io.js"></script>
+    <script type="text/javascript">
+      var socket = io.connect('http://127.0.0.1:8081/');
+        function WebSocketTest() {
+            console.log("------")
+            socket.emit('message', 'oooooooo');
+        }
+        socket.on('receive_message', function (data) {
+            alert("kkkkkk")
+            location.reload();
+        });
+    </script>
+</head>
+
+<body>
+    <div id="sse">
+        <a href="javascript:WebSocketTest()">运行 WebSocket</a>
+    </div>
+</body>
+
+
+</html>
